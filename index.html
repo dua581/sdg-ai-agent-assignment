@@ -186,15 +186,16 @@
                 try {
                     // Direct local connection or public rest bypass
                     // Is naye link se replace kar dein
-const response = await fetch(`/api/chat`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ message: messageText })
-                    });
-                    const data = await response.json();
-                    if(data.success) {
-                        aiResponse = data.text;
-                    } else {
+// 🔴 Yahan humne aap ka live Vercel domain direct attach kar diya hai
+const response = await fetch(`https://sdg-ai-agent-assignment-git-main-dua-s-projects2.vercel.app/api/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: messageText })
+});
+const data = await response.json();
+if(data.success) {
+    aiResponse = data.text;
+}else {
                         throw new Error("Bypass");
                     }
                 } catch(e) {
